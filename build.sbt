@@ -1,14 +1,17 @@
-import Dependencies._
+name := """expense-tracker"""
+organization := "com.example"
 
-ThisBuild / scalaVersion     := "2.13.12"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "expense-tracker",
-    libraryDependencies += munit % Test
-  )
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-// See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
+scalaVersion := "2.13.15"
+
+libraryDependencies += guice
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
+
+// Adds additional packages into Twirl
+//TwirlKeys.templateImports += "com.example.controllers._"
+
+// Adds additional packages into conf/routes
+// play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
